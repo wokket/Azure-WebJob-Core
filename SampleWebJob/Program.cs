@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -37,8 +38,8 @@ namespace SampleWebJob
                 configLogging.AddSerilog(new LoggerConfiguration()
                           .ReadFrom.Configuration(hostContext.Configuration)
                           .CreateLogger());
-                configLogging.AddConsole();
-                configLogging.AddDebug();
+
+                Log.Information("Environment: {environment}", hostContext.HostingEnvironment.EnvironmentName);
             })
             .Build();
 
@@ -46,7 +47,8 @@ namespace SampleWebJob
             {
                 await host.RunAsync().ConfigureAwait(true);
             }
-            catch (HostingStopException) {
+            catch (HostingStopException)
+            {
                 //Host terminated
             }
         }

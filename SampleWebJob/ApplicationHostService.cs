@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,6 +26,9 @@ namespace SampleWebJob
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             await Task.CompletedTask.ConfigureAwait(false);
+            _logger.LogInformation("Base dir: {baseDir}", Directory.GetCurrentDirectory());
+            _logger.LogInformation("Environment: {environment}", _hostingEnvironment.EnvironmentName);
+
 
             //Do something
             _logger.LogWarning("Hello from console application");
