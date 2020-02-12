@@ -3,9 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using System;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SampleWebJob
@@ -46,7 +44,7 @@ namespace SampleWebJob
 
             try
             {
-                await host.RunAsync();
+                await host.RunAsync().ConfigureAwait(true);
             }
             catch (HostingStopException) {
                 //Host terminated

@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,11 +10,11 @@ namespace SampleWebJob
     {
         readonly ILogger<ApplicationHostService> _logger;
         readonly IConfiguration _configuration;
-        readonly IHostingEnvironment _hostingEnvironment;
+        readonly IHostEnvironment _hostingEnvironment;
         public ApplicationHostService(
             ILogger<ApplicationHostService> logger,
             IConfiguration configuration,
-            IHostingEnvironment hostingEnvironment
+            IHostEnvironment hostingEnvironment
             )
         {
             _logger = logger;
@@ -27,7 +24,7 @@ namespace SampleWebJob
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(false);
 
             //Do something
             _logger.LogWarning("Hello from console application");
@@ -38,7 +35,7 @@ namespace SampleWebJob
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(false);
         }
     }
 }
