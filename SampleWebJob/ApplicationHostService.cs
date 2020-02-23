@@ -31,7 +31,7 @@ namespace SampleWebJob
 
 
             //Do something
-            _logger.LogWarning("Hello from console application");
+            _logger.LogDebug("Hello from console application");
 
             //Throw exception to terminate the host
             throw new HostingStopException();
